@@ -1,69 +1,171 @@
-*{
+/* Reset and Global Styles */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
+/* Body Styling */
 body {
-    background-color: #548687;
+    font-family: 'Roboto', sans-serif;
+    background: #1e293b; /* Dark background for contrast */
+    color: #fff; /* White text for high contrast */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     text-align: center;
+    padding: 20px;
 }
 
+/* Title Styling */
+h {
+    font-size: 3.5rem;
+    color: #34d399; /* Soft Green */
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+    text-shadow: 0px 4px 8px rgba(52, 211, 153, 0.7);
+}
+
+/* Game Grid */
 .container {
-    height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5vmin
+    margin-top: 1.5rem;
 }
 
+/* Game Box Grid Layout */
 .game {
-    height: 60vmin;
-    width: 60vmin;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.5vmin;
+    width: 70vmin;
+    max-width: 450px;
+    margin: auto;
+    padding: 1rem;
+}
+
+/* Styling for Game Boxes */
+.box {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 1.5vmin;
+    height: 19vmin;
+    aspect-ratio: 1;
+    font-size: 6rem;
+    font-weight: bold;
+    background-color: #3b4252; /* Soft grayish background */
+    color: #d1fae5; /* Light green text */
+    border-radius: 15px;
+    border: 3px solid #2d3748; /* Darker border */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow 0.2s ease;
+    cursor: pointer;
 }
 
-.box {
-    height: 18vmin;
-    width: 18vmin;
-    border-radius: 1rem;
-    border: none;
-    box-shadow: 0 0 1rem rgba (0,0,0,0,3);
-    font-size: 8vmin;
-    color: #b0413e;
-    background-color: #ffffc7;
+.box:hover {
+    background-color: #4c566a; /* Darker gray on hover */
+    box-shadow: 0 10px 20px rgba(56, 189, 248, 0.5); /* Light blue glow */
+    transform: scale(1.05);
 }
 
-#reset-btn {
-    padding: 1rem;
-    font-size: 1.25rem;
-    background-color: #191913;
-    color: #fff;
-    border-radius: 1rem;
-    border: none;
+.box:active {
+    background-color: #2e3440; /* Darker shade on active press */
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Reset and New Game Buttons */
+#reset-btn,
 #new-btn {
-    padding: 1rem;
+    padding: 1rem 2rem;
     font-size: 1.25rem;
-    background-color: #191913;
+    background-color: #2f855a; /* Green background */
     color: #fff;
-    border-radius: 1rem;
     border: none;
+    border-radius: 12px;
+    margin-top: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 8px 16px rgba(47, 133, 90, 0.6);
+}
+
+#reset-btn:hover,
+#new-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 10px 25px rgba(47, 133, 90, 0.8);
+}
+
+#reset-btn:active,
+#new-btn:active {
+    transform: scale(0.95);
+}
+
+/* Winner Modal */
+.msg-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.8); /* Transparent black overlay */
+    border-radius: 15px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    z-index: 100;
+    max-width: 500px;
+    width: 80%;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.msg-container.hide {
+    display: none;
 }
 
 #msg {
-    color: #ffffc7;
-    font-size: 5vmin;
+    font-size: 2rem;
+    color: #34d399; /* Green text */
+    margin-bottom: 1rem;
+    text-shadow: 0px 3px 6px rgba(52, 211, 153, 0.7);
 }
 
-.msg-container {
-    height: 30vmin;
+.msg-container button {
+    padding: 1rem 2rem;
+    background-color: #f56565; /* Red background */
+    color: #fff;
+    font-size: 1.25rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0px 5px 10px rgba(240, 82, 82, 0.6);
+    transition: all 0.3s ease;
 }
 
-.hide {
-    display: none;
+.msg-container button:hover {
+    background-color: #e53e3e; /* Darker red on hover */
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(240, 82, 82, 0.8);
+}
+
+.msg-container button:active {
+    background-color: #c53030; /* Even darker red on click */
+    transform: scale(0.95);
+}
+
+/* Animation for Modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
